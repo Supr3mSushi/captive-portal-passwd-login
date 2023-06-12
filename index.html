@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- Title -->
+    <title>Portail Helios visiteur</title>
+    <!-- Icon -->
+    <link rel="shortcut icon" href="captiveportal-helioshtml.ico" type="image/x-icon">
+    <!-- Css -->
+    <link rel="stylesheet" href="captiveportal-style.css" type="text/css" media="all">
+</head>
+
+<body>
+    <div id="background">
+        <div class="card" id="card">
+            <div class="header">
+                <img src="captiveportal-Logo-Helios.png" alt="logo">
+                <h1>Bienvenue dans votre espace internet !</h1>
+            </div>
+            <form method="post" class="form" action="$PORTAL_ACTION$">
+                <input name="auth_user" type="text" placeholder="Identifiant">
+                <input name="auth_pass" type="password" placeholder="Mot de passe">
+                <input name="redirurl" type="hidden" value="$PORTAL_REDIRURL$">
+                <input name="zone" type="hidden" value="$PORTAL_ZONE$">
+                <button name="accept" type="submit" class="button">Se connecter</button>
+            </form>
+
+            <!-- Modal button : Conditions d'utilisation-->
+            <div class="card-use">
+                <div class="row">
+                    <div class="title">
+                        <div class="checkbox-container">
+                            <input id="checkbox" type="checkbox" class="checkTheBox">
+                            <label for="checkbox"></label>
+                            <p id="terms-link">J'accepte les conditions d'utilisation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h5 class="modal-title">Conditions d'utilisation</h5>
+            <p>Hélios sécurité est proposé par Axion Network Informatique
+                <br>En validant sur le bouton « se
+                connecter », vous acceptez la traçabilité de votre accès à internet via ce portail.
+                <br>Vous
+                reconnaissez être informé des dispositions de lois pour la confiance dans l’économie numérique du
+                21 juin 2004 (dite LCEN),
+                <br>loi n° 2006-64 du 23 janvier 2006, relative à la lutte contre le
+                terrorisme, Décret sur la Traçabilité des données de connexion Internet : Décret du 28 Avril
+                2015.
+                <br> Vous reconnaissez ne pas utilisez cet accès pour toute connexion et/ou visualisation de
+                lien non conforme aux lois en vigueurs (Pédophilie, armes, drogues, etc).
+                <br>Les informations de
+                connexions seront conservées pendant 1 an.
+            </p>
+            <button type="button" class="btn btn-primary close">Fermer</button>
+        </div>
+</div>
+
+<!-- Js -->
+<script type="text/javascript">
+    // Vérification des identifiants et mots de passe et vérification de l'acceptation des conditions d'utilisation
+    document.querySelector(".button").addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const checkbox = document.querySelector("#checkbox");
+        const identifiant = document.getElementsByName("auth_user")[0].value;
+        const motDePasse = document.getElementsByName("auth_pass")[0].value;
+
+        function connect() {
+            window.location.href = "$PORTAL_REDIRURL$";
+        }
+
+        if (!checkbox.checked) {
+            // Les conditions d'utilisation n'ont pas été acceptées, afficher un message d'erreur
+            showAlert("Veuillez accepter les conditions d'utilisation.");
+        } else if (identifiant === "" || motDePasse === "") {
+            // L'identifiant ou le mot de passe n'a pas été saisi, afficher un message d'erreur
+            showAlert("Veuillez saisir votre identifiant et votre mot de passe.");
+        } else {
+            // Vérifier les identifiants et mots de passe
+            var identifiant_correct = "admin";
+            var motdepasse_correct = "helios";
+
+            if (identifiant === identifiant_correct && motDePasse === motdepasse_correct) {
+                // Rediriger l'utilisateur vers une autre page
+                connect();
+            } else {
+                showAlert("Identifiant ou mot de passe incorrect. Veuillez réessayer.");
+                document.getElementsByName("auth_user")[0].value = "";
+                document.getElementsByName("auth_pass")[0].value = "";
+            }
+        }
+    });
+
+    // Changement de l'image de fond avec carrousel automatique
+    var entreprises = {
+        "entreprise": "captiveportal-hotelVerdon.png",
+        "entreprise1": "captiveportal-hotelVerdon1.png",
+        //"entreprise2": "img/hotelVerdon2.jpg",
+    };
+
+    var imagesEntreprises = Object.values(entreprises);
+    var currentImageIndex = 0;
+    var backgroundDiv = document.getElementById("background");
+
+    function changeBackgroundImage() {
+        var imagePath = imagesEntreprises[currentImageIndex];
+        backgroundDiv.style.backgroundImage = "url('" + imagePath + "')";
+        backgroundDiv.style.backgroundSize = "cover";
+        backgroundDiv.style.backgroundRepeat = "no-repeat";
+        backgroundDiv.style.backgroundPosition = "center";
+
+        currentImageIndex = (currentImageIndex + 1) % imagesEntreprises.length;
+    }
+
+    // Appel initial pour définir l'image de fond
+    changeBackgroundImage();
+
+    // Carrousel : changement automatique toutes les 3 secondes
+    setInterval(changeBackgroundImage, 3000);
+
+
+    // Gestion du clic sur l'icône des conditions d'utilisation
+    document.addEventListener("DOMContentLoaded", function () {
+        var termsLink = document.getElementById("terms-link");
+        termsLink.addEventListener("click", function () {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "block";
+        });
+
+        var closeButtons = document.getElementsByClassName("close");
+        for (var i = 0; i < closeButtons.length; i++) {
+            closeButtons[i].addEventListener("click", function () {
+                var modal = document.getElementById("myModal");
+                modal.style.display = "none";
+            });
+        }
+
+        window.addEventListener("click", function (event) {
+            var modal = document.getElementById("myModal");
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+    });
+
+    // Fonction utilitaire pour afficher une alerte
+    function showAlert(message) {
+        var alertElement = document.createElement("div");
+        alertElement.classList.add("alert");
+        alertElement.innerText = message;
+
+        var card = document.getElementById("card");
+        card.appendChild(alertElement);
+
+        setTimeout(function () {
+            alertElement.remove();
+        }, 3000);
+    }
+
+    // Fonction pour ajuster la position du bouton des conditions d'utilisation
+    function adjustButtonPosition() {
+        var button = document.getElementById('conditions-button');
+        var form = document.getElementById('login-form');
+        var formRect = form.getBoundingClientRect();
+        var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+        if (button && form) {
+            var buttonRect = button.getBoundingClientRect();
+            var buttonBottom = buttonRect.bottom - formRect.top;
+
+            if (buttonBottom > viewportHeight) {
+                form.style.marginBottom = (buttonBottom - viewportHeight + 10) + 'px';
+            } else {
+                form.style.marginBottom = '';
+            }
+        }
+    }
+
+    // Événement de focus sur les éléments de saisie
+    var inputElements = document.querySelectorAll('input');
+    for (var i = 0; i < inputElements.length; i++) {
+        inputElements[i].addEventListener('focus', adjustButtonPosition);
+    }
+
+    // Événement lorsque le clavier est fermé
+    window.addEventListener('resize', adjustButtonPosition);
+</script>
+</body>
+
+</html>

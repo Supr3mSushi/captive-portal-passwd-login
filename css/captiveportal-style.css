@@ -1,0 +1,347 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+#background {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out;
+}
+
+.card {
+    width: 400px;
+    background-color: rgb(255, 255, 255, 0.7);
+    border-radius: 50px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 50%;
+}
+
+.header img {
+    width: 175px;
+    height: 175px;
+}
+
+.header h1 {
+    font-size: 35px;
+    color: #000;
+    font-weight: bolder;
+    margin: 10px;
+    text-align: center;
+}
+
+.form {
+    padding: 45px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form input {
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    display: flex;
+}
+
+.button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #354d62;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #ffffff;
+    font-size: 15px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+}
+
+.button:hover,
+.form button:active,
+.form button:focus {
+    background: #48647f;
+}
+
+.card-use {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 1.5px 5.4px rgba(0, 0, 0, 0.054),
+    0 3.7px 10.9px rgba(0, 0, 0, 0.068), 0 7px 16.8px rgba(0, 0, 0, 0.074),
+    0 12.5px 24.6px rgba(0, 0, 0, 0.076),
+    0 23.4px 38.1px rgba(0, 0, 0, 0.08), 0 56px 80px rgba(0, 0, 0, 0.1);
+    height: 43px;
+    transition: height 400ms;
+    -webkit-tap-highlight-color: #00000010;
+    position: absolute;
+    top: 82%;
+    padding-left: 15px;
+    margin-left: 5px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: height 400ms;
+    width: 18.5rem;
+}
+
+input#checkbox.checkTheBox {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 9px;
+    cursor: pointer;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+    margin-top: -12px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.title p {
+    position: static;
+    margin: 22px 20px 22px 20px;
+    cursor: pointer;
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+#popup {
+    background-color: #1e3050;
+    color: #ffffff;
+    display: none;
+    width: 600px;
+    height: 600px;
+    box-shadow: #354d62;
+}
+
+#popup h3 {
+    margin: auto;
+    font-size: 20px;
+    text-align: center;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content p {
+    font-size: 20px;
+}
+
+
+@media (max-width: 767px) {
+    .header img {
+        width: 150px;
+        height: 150px;
+        margin-top: -20px;
+    }
+
+    .header h1 {
+        font-size: 25px;
+        margin: 20px 10px 0 15px
+    }
+
+    .form {
+        padding: 15px;
+        margin-top: -20px;
+    }
+
+    .form input {
+        font-size: 15px;
+    }
+
+    .button {
+        font-size: 15px;
+    }
+
+    .row {
+        width: 13rem;
+    }
+
+    .title p {
+        margin: 25px 10px 25px 20px;
+        font-size: 10px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 270px;
+        height: 580px;
+    }
+
+    .card-use {
+        padding-left: 50px;
+        margin-top: 70px;
+    }
+
+    input#checkbox.checkTheBox {
+        margin-top: 3px;
+        margin-left: -40px;
+    }
+
+    .modal {
+        top: -60px;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+
+    .modal-content p {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) and (max-width: 1079px) {
+    .card {
+        width: 100%;
+        max-width: 400px;
+        height: 690px;
+    }
+
+    .form {
+        padding: 60px;
+    }
+
+    .form input {
+        font-size: 16px;
+    }
+
+    .button {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 809px) and (max-width: 1079px) {
+    .card {
+        width: 100%;
+        max-width: 400px;
+        height: 680px;
+    }
+
+    .card-use {
+        margin-top: -35px;
+    }
+
+    .form {
+        padding: 60px;
+    }
+
+    .form input {
+        font-size: 16px;
+    }
+
+    .button {
+        font-size: 16px;
+    }
+}
+
+@media only screen
+and (device-width: 360px)
+and (device-height: 780px)
+and (-webkit-device-pixel-ratio: 3) {
+    .card {
+        width: 100%;
+        max-width: 270px;
+        height: 500px;
+    }
+
+    .card-use {
+        padding-left: 0;
+        margin-top: -20px;
+    }
+
+    input#checkbox.checkTheBox {
+        margin-top: 5px;
+        margin-left: 5px;
+    }
+
+    .modal {
+        top: -100px;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+
+    .modal-content p {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .card {
+        width: 100%;
+        max-width: 400px;
+        height: 650px;
+    }
+
+    .form {
+        padding: 15px;
+    }
+
+    .form input {
+        font-size: 15px;
+    }
+
+    .button {
+        font-size: 18px;
+    }
+}
