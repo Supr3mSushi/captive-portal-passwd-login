@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <!-- Required meta tags -->
@@ -14,98 +14,91 @@
 </head>
 
 <body>
-    <div id="background">
-        <div class="card" id="card">
-            <div class="header">
-                <img src="captiveportal-Logo-Helios.png" alt="logo">
-                <h1>Bienvenue dans votre espace internet !</h1>
-            </div>
-            <form method="post" class="form" action="$PORTAL_ACTION$">
-                <input name="auth_user" type="text" placeholder="Identifiant">
-                <input name="auth_pass" type="password" placeholder="Mot de passe">
-                <input name="redirurl" type="hidden" value="$PORTAL_REDIRURL$">
-                <input name="zone" type="hidden" value="$PORTAL_ZONE$">
-                <button name="accept" type="submit" class="button">Se connecter</button>
-            </form>
+<div id="background">
+    <div class="card" id="card">
+        <div class="header">
+            <img src="captiveportal-Logo-Helios.png" alt="logo">
+            <h1>Bienvenue dans votre espace internet !</h1>
+        </div>
+        <form method="post" class="form" action="$PORTAL_ACTION$">
+            <input name="auth_pass" type="password" placeholder="Mot de passe">
+            <input name="redirurl" type="hidden" value="$PORTAL_REDIRURL$">
+            <input name="accept" id="btnSeConnecter" type="submit" class="button" value="Se Connecter">
+        </form>
 
-            <!-- Modal button : Conditions d'utilisation-->
-            <div class="card-use">
-                <div class="row">
-                    <div class="title">
-                        <div class="checkbox-container">
-                            <input id="checkbox" type="checkbox" class="checkTheBox">
-                            <label for="checkbox"></label>
-                            <p id="terms-link">J'accepte les conditions d'utilisation</p>
-                        </div>
+        <!-- Modal button : Conditions d'utilisation-->
+        <div class="card-use">
+            <div class="row">
+                <div class="title">
+                    <div class="checkbox-container">
+                        <input id="checkbox" type="checkbox" class="checkTheBox">
+                        <label for="checkbox"></label>
+                        <p id="terms-link">J'accepte les conditions d'utilisation</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Modal -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h5 class="modal-title">Conditions d'utilisation</h5>
-            <p>Hélios sécurité est proposé par Axion Network Informatique
-                <br>En validant sur le bouton « se
-                connecter », vous acceptez la traçabilité de votre accès à internet via ce portail.
-                <br>Vous
-                reconnaissez être informé des dispositions de lois pour la confiance dans l’économie numérique du
-                21 juin 2004 (dite LCEN),
-                <br>loi n° 2006-64 du 23 janvier 2006, relative à la lutte contre le
-                terrorisme, Décret sur la Traçabilité des données de connexion Internet : Décret du 28 Avril
-                2015.
-                <br> Vous reconnaissez ne pas utilisez cet accès pour toute connexion et/ou visualisation de
-                lien non conforme aux lois en vigueurs (Pédophilie, armes, drogues, etc).
-                <br>Les informations de
-                connexions seront conservées pendant 1 an.
-            </p>
-            <button type="button" class="btn btn-primary close">Fermer</button>
-        </div>
+<!-- Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h5 class="modal-title">Conditions d'utilisation</h5>
+        <p>Hélios sécurité est proposé par Axion Network Informatique
+            <br>En validant sur le bouton « se
+            connecter », vous acceptez la traçabilité de votre accès à internet via ce portail.
+            <br>Vous
+            reconnaissez être informé des dispositions de lois pour la confiance dans l’économie numérique du
+            21 juin 2004 (dite LCEN),
+            <br>loi n° 2006-64 du 23 janvier 2006, relative à la lutte contre le
+            terrorisme, Décret sur la Traçabilité des données de connexion Internet : Décret du 28 Avril
+            2015.
+            <br> Vous reconnaissez ne pas utilisez cet accès pour toute connexion et/ou visualisation de
+            lien non conforme aux lois en vigueurs (Pédophilie, armes, drogues, etc).
+            <br>Les informations de
+            connexions seront conservées pendant 1 an.
+        </p>
+        <button type="button" class="btn btn-primary close">Fermer</button>
+    </div>
 </div>
 
 <!-- Js -->
 <script type="text/javascript">
-    // Vérification des identifiants et mots de passe et vérification de l'acceptation des conditions d'utilisation
-    document.querySelector(".button").addEventListener("click", function (event) {
-        event.preventDefault();
+    var form = document.querySelector('.form');
+    form.addEventListener('submit', function (event) {
+        var usernameInput = document.querySelector('input[name="auth_user"]');
+        var passwordInput = document.querySelector('input[name="auth_pass"]');
+        var acceptCheckbox = document.getElementById('checkbox');
 
-        const checkbox = document.querySelector("#checkbox");
-        const identifiant = document.getElementsByName("auth_user")[0].value;
-        const motDePasse = document.getElementsByName("auth_pass")[0].value;
-
-        function connect() {
-            window.location.href = "$PORTAL_REDIRURL$";
-        }
-
-        if (!checkbox.checked) {
-            // Les conditions d'utilisation n'ont pas été acceptées, afficher un message d'erreur
+        if (!acceptCheckbox.checked) {
+            event.preventDefault();
             showAlert("Veuillez accepter les conditions d'utilisation.");
-        } else if (identifiant === "" || motDePasse === "") {
-            // L'identifiant ou le mot de passe n'a pas été saisi, afficher un message d'erreur
+        } else if (usernameInput.value === '' || passwordInput.value === '') {
+            event.preventDefault();
             showAlert("Veuillez saisir votre identifiant et votre mot de passe.");
-        } else {
-            // Vérifier les identifiants et mots de passe
-            var identifiant_correct = "admin";
-            var motdepasse_correct = "helios";
-
-            if (identifiant === identifiant_correct && motDePasse === motdepasse_correct) {
-                // Rediriger l'utilisateur vers une autre page
-                connect();
-            } else {
-                showAlert("Identifiant ou mot de passe incorrect. Veuillez réessayer.");
-                document.getElementsByName("auth_user")[0].value = "";
-                document.getElementsByName("auth_pass")[0].value = "";
-            }
         }
     });
 
+    // Fonction utilitaire pour afficher une alerte
+    function showAlert(message) {
+        var alertElement = document.createElement("div");
+        alertElement.classList.add("alert");
+        alertElement.innerText = message;
+
+        var card = document.getElementById("card");
+        card.appendChild(alertElement);
+
+        setTimeout(function () {
+            alertElement.remove();
+        }, 3000);
+    }
+
     // Changement de l'image de fond avec carrousel automatique
     var entreprises = {
-        "entreprise": "captiveportal-hotelVerdon.png",
-        "entreprise1": "captiveportal-hotelVerdon1.png",
+        "entreprise": "captiveportal-hotelVerdon.jpg",
+        "entreprise1": "captiveportal-hotelVerdon1.jpg",
         //"entreprise2": "img/hotelVerdon2.jpg",
     };
 
@@ -154,20 +147,6 @@
         });
     });
 
-    // Fonction utilitaire pour afficher une alerte
-    function showAlert(message) {
-        var alertElement = document.createElement("div");
-        alertElement.classList.add("alert");
-        alertElement.innerText = message;
-
-        var card = document.getElementById("card");
-        card.appendChild(alertElement);
-
-        setTimeout(function () {
-            alertElement.remove();
-        }, 3000);
-    }
-
     // Fonction pour ajuster la position du bouton des conditions d'utilisation
     function adjustButtonPosition() {
         var button = document.getElementById('conditions-button');
@@ -177,7 +156,7 @@
 
         if (button && form) {
             var buttonRect = button.getBoundingClientRect();
-            var buttonBottom = buttonRect.bottom - formRect.top;
+            var buttonBottom = buttonRect.bottom - formRect.top;33
 
             if (buttonBottom > viewportHeight) {
                 form.style.marginBottom = (buttonBottom - viewportHeight + 10) + 'px';
