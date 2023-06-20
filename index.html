@@ -147,6 +147,7 @@
         var title = document.querySelector(".header h1");
         var modalTitle = document.querySelector(".modal-title");
         var modalText = document.querySelector(".modal-content p");
+        var usernameInput = document.querySelector('input[name="auth_user"]');
         var passwordInput = document.querySelector('input[name="auth_pass"]');
         var termsLink = document.getElementById("terms-link");
         var submitButton = document.getElementById("btnSeConnecter");
@@ -162,6 +163,7 @@
                 "loi n° 2006-64 du 23 janvier 2006, relative à la lutte contre le terrorisme, Décret sur la Traçabilité des données de connexion Internet : Décret du 28 Avril 2015.\n" +
                 "Vous reconnaissez ne pas utilisez cet accès pour toute connexion et/ou visualisation de lien non conforme aux lois en vigueurs (Pédophilie, armes, drogues, etc).\n" +
                 "Les informations de connexions seront conservées pendant 1 an.";
+            usernameInput.setAttribute("placeholder", "Identifiant");
             passwordInput.setAttribute("placeholder", "Mot de passe");
             termsLink.innerText = "J'accepte les conditions d'utilisation";
             submitButton.setAttribute("value", "Se Connecter");
@@ -176,6 +178,7 @@
                 "law no. 2006-64 of January 23, 2006, relating to the fight against terrorism, Decree on the Traceability of Internet Connection Data: Decree of April 28, 2015.\n" +
                 "You acknowledge not using this access for any connection and/or viewing of links that are not compliant with current laws (Pedophilia, weapons, drugs, etc).\n" +
                 "Connection information will be retained for 1 year.";
+            usernameInput.setAttribute("placeholder", "Username");
             passwordInput.setAttribute("placeholder", "Password");
             termsLink.innerText = "I accept the terms of use";
             submitButton.setAttribute("value", "Log In");
