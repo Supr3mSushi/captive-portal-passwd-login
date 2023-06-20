@@ -30,8 +30,8 @@
         }
 
         .box {
-            width: 600px;
-            height: 375px;
+            width: 800px;
+            height: 475px;
             position: relative;
             border-radius: 5px;
             box-shadow: 15px 15px 5px rgba(150,150,150,.5);
@@ -54,7 +54,7 @@
         h1 {
             color: white;
             font-weight: bold;
-            font-size: 40px;
+            font-size: 55px;
             margin: auto;
         }
 
@@ -67,7 +67,7 @@
             text-transform: uppercase;
             font-weight: 800;
             color: black;
-            margin-top: 30px;
+            margin-top: 45px;
             font-size: 28px;
         }
 
@@ -78,6 +78,23 @@
 
         p.related a:hover {
             text-decoration: underline;
+        }
+
+        .language-selector {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .language-selector img {
+            height: 50px;
+            width: 50px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .language-selector img:hover {
+            opacity: 0.8;
         }
 
         @media only screen and (max-width: 600px) {
@@ -96,7 +113,7 @@
 <body>
 <div class="box blurred-bg tinted">
     <div class="content">
-        <img src="captiveportal-Logo-Helios.png" style="height: 150px; width: 150px;">
+        <img src="captiveportal-Logo-Helios.png" style="height: 175px; width: 175px;">
         <h1>Identifiant ou mot de passe incorrect.</h1>
         <form id="retryForm" method="post" action="$PORTAL_ACTION$">
             <input name="redirurl" type="hidden" value="$PORTAL_REDIRURL$">
@@ -104,7 +121,27 @@
         <p class="related">
             <a href="#" onclick="document.getElementById('retryForm').submit(); return false;">Cliquez ici</a>
         </p>
+        <div class="language-selector">
+            <img src="captiveportal-francais.png" alt="French" onclick="changeLanguage('fr')">
+            <img src="captiveportal-anglais.png" alt="English" onclick="changeLanguage('en')">
+        </div>
     </div>
 </div>
+
+<script>
+    function changeLanguage(lang) {
+        var title = document.querySelector(".content h1");
+        var relatedText = document.querySelector(".content p.related a");
+
+        if (lang === "fr") {
+            title.innerText = "Identifiant ou mot de passe incorrect.";
+            relatedText.innerText = "Cliquez ici";
+        } else if (lang === "en") {
+            title.innerText = "Incorrect username or password.";
+            relatedText.innerText = "Click here";
+        }
+    }
+    changeLanguage('fr');
+</script>
 </body>
 </html>

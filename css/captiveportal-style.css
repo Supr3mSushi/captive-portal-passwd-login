@@ -184,6 +184,23 @@ input#checkbox.checkTheBox {
     font-size: 20px;
 }
 
+.language-selector {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.language-selector img {
+    height: 50px;
+    width: 50px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.language-selector img:hover {
+    opacity: 0.8;
+}
+
 
 @media (max-width: 767px) {
     .header img {
@@ -194,12 +211,12 @@ input#checkbox.checkTheBox {
 
     .header h1 {
         font-size: 25px;
-        margin: 20px 10px 0 15px
+        margin: 15px 10px 50px 5px;
     }
 
     .form {
-        padding: 15px;
-        margin-top: -20px;
+        padding: 10px;
+        margin-top: -10px;
     }
 
     .form input {
@@ -246,9 +263,25 @@ input#checkbox.checkTheBox {
     .modal-content p {
         font-size: 18px;
     }
+
+    .language-selector {
+        position: absolute;
+        top: 300px;
+        right: 150px;
+    }
+
+    .language-selector img {
+        height: 30px;
+        width: 30px;
+        cursor: pointer;
+    }
+
+    .language-selector img:hover {
+        opacity: 0.8;
+    }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) and (max-width: 1079px) {
+@media (min-width: 768px) and (max-width: 1023px) {
     .card {
         width: 100%;
         max-width: 400px;

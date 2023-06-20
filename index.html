@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html lang="fr">
 
 <head>
@@ -18,7 +19,12 @@
     <div class="card" id="card">
         <div class="header">
             <img src="captiveportal-Logo-Helios.png" alt="logo">
-            <h1>Bienvenue dans votre espace internet !</h1>
+            <h1>Bienvenue dans votre espace internet</h1>
+            <!-- Changement langue -->
+            <div class="language-selector">
+                <img src="captiveportal-francais.png" alt="French" onclick="changeLanguage('fr')">
+                <img src="captiveportal-anglais.png" alt="English" onclick="changeLanguage('en')">
+            </div>
         </div>
         <form method="post" class="form" action="$PORTAL_ACTION$">
             <input name="auth_user" type="text" placeholder="Identifiant" value="PcaptifUser" readonly style="display: none;">
@@ -61,7 +67,7 @@
             <br>Les informations de
             connexions seront conservées pendant 1 an.
         </p>
-        <button type="button" class="btn btn-primary close">Fermer</button>
+        <button type="button" class="btn btn-primary close" id="closeButton">Fermer</button>
     </div>
 </div>
 
@@ -76,23 +82,36 @@
         if (!acceptCheckbox.checked) {
             event.preventDefault();
             showAlert("Veuillez accepter les conditions d'utilisation.");
+            showAlert("Please accept the terms of use.");
         } else if (usernameInput.value === '' || passwordInput.value === '') {
             event.preventDefault();
-            showAlert("Veuillez saisir votre mot de passe.");
+            showAlert("Veuillez remplir tous les champs.");
+            showAlert("Please fill all the blanks.");
         }
     });
 
     // Fonction utilitaire pour afficher une alerte
     function showAlert(message) {
-        var alertElement = document.createElement("div");
-        alertElement.classList.add("alert");
-        alertElement.innerText = message;
+        var existingAlert = document.querySelector(".alert");
+        var alertElement;
 
-        var card = document.getElementById("card");
-        card.appendChild(alertElement);
+        if (existingAlert) {
+            alertElement = existingAlert;
+        } else {
+            alertElement = document.createElement("div");
+            alertElement.classList.add("alert");
+            var card = document.getElementById("card");
+            card.appendChild(alertElement);
+        }
+
+        if (!alertElement.innerText.includes(message)) {
+            alertElement.innerText += message + "\n";
+        }
 
         setTimeout(function () {
-            alertElement.remove();
+            if (alertElement.innerText.includes(message + "\n")) {
+                alertElement.innerText = alertElement.innerText.replace(message + "\n", "");
+            }
         }, 3000);
     }
 
@@ -123,6 +142,46 @@
     // Carrousel : changement automatique toutes les 3 secondes
     setInterval(changeBackgroundImage, 3000);
 
+    // Changement de langue
+    function changeLanguage(lang) {
+        var title = document.querySelector(".header h1");
+        var modalTitle = document.querySelector(".modal-title");
+        var modalText = document.querySelector(".modal-content p");
+        var passwordInput = document.querySelector('input[name="auth_pass"]');
+        var termsLink = document.getElementById("terms-link");
+        var submitButton = document.getElementById("btnSeConnecter");
+        var buttonClose = document.querySelector(".close");
+        var closeButton = document.getElementById("closeButton");
+        if (lang === "fr") {
+            // Mettre à jour les textes en français
+            title.innerText = "Bienvenue dans votre espace internet ";
+            modalTitle.innerText = "Conditions d'utilisation";
+            modalText.innerText = "Hélios sécurité est proposé par Axion Network Informatique\n" +
+                "En validant sur le bouton « se connecter », vous acceptez la traçabilité de votre accès à internet via ce portail.\n" +
+                "Vous reconnaissez être informé des dispositions de lois pour la confiance dans l’économie numérique du 21 juin 2004 (dite LCEN),\n" +
+                "loi n° 2006-64 du 23 janvier 2006, relative à la lutte contre le terrorisme, Décret sur la Traçabilité des données de connexion Internet : Décret du 28 Avril 2015.\n" +
+                "Vous reconnaissez ne pas utilisez cet accès pour toute connexion et/ou visualisation de lien non conforme aux lois en vigueurs (Pédophilie, armes, drogues, etc).\n" +
+                "Les informations de connexions seront conservées pendant 1 an.";
+            passwordInput.setAttribute("placeholder", "Mot de passe");
+            termsLink.innerText = "J'accepte les conditions d'utilisation";
+            submitButton.setAttribute("value", "Se Connecter");
+            closeButton.innerText = "Fermer";
+        } else if (lang === "en") {
+            // Mettre à jour les textes en anglais
+            title.innerText = "Welcome to your internet space ";
+            modalTitle.innerText = "Terms of use";
+            modalText.innerText = "Hélios sécurité is provided by Axion Network Informatique.\n" +
+                "By validating the 'se connecter' button, you accept the traceability of your internet access through this portal.\n" +
+                "You acknowledge being informed of the legal provisions for trust in the digital economy of June 21, 2004 (known as LCEN),\n" +
+                "law no. 2006-64 of January 23, 2006, relating to the fight against terrorism, Decree on the Traceability of Internet Connection Data: Decree of April 28, 2015.\n" +
+                "You acknowledge not using this access for any connection and/or viewing of links that are not compliant with current laws (Pedophilia, weapons, drugs, etc).\n" +
+                "Connection information will be retained for 1 year.";
+            passwordInput.setAttribute("placeholder", "Password");
+            termsLink.innerText = "I accept the terms of use";
+            submitButton.setAttribute("value", "Log In");
+            closeButton.innerText = "Close";
+        }
+    }
 
     // Gestion du clic sur l'icône des conditions d'utilisation
     document.addEventListener("DOMContentLoaded", function () {
@@ -153,29 +212,17 @@
         var button = document.getElementById('conditions-button');
         var form = document.getElementById('login-form');
         var formRect = form.getBoundingClientRect();
-        var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
 
-        if (button && form) {
-            var buttonRect = button.getBoundingClientRect();
-            var buttonBottom = buttonRect.bottom - formRect.top;33
+        var formBottom = formRect.bottom;
 
-            if (buttonBottom > viewportHeight) {
-                form.style.marginBottom = (buttonBottom - viewportHeight + 10) + 'px';
-            } else {
-                form.style.marginBottom = '';
-            }
-        }
+        button.style.top = formBottom + 'px';
     }
 
-    // Événement de focus sur les éléments de saisie
-    var inputElements = document.querySelectorAll('input');
-    for (var i = 0; i < inputElements.length; i++) {
-        inputElements[i].addEventListener('focus', adjustButtonPosition);
-    }
+    // Appel initial pour ajuster la position du bouton
+    adjustButtonPosition();
 
-    // Événement lorsque le clavier est fermé
+    // Ajuster la position du bouton lorsque la fenêtre est redimensionnée
     window.addEventListener('resize', adjustButtonPosition);
 </script>
 </body>
-
 </html>
