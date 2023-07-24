@@ -2,11 +2,11 @@
 <html lang="fr">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="shortcut icon" href="icon/captiveportal-helioshtml.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="captiveportal-helioshtml.ico" type="image/x-icon">
     <title>Page Erreur du Portail Captif</title>
     <style type="text/css">
         body.background-img {
-            background-image: url("img/captiveportal-lesvallois.jpg");
+            background-image: url("captiveportal-lesvallois.jpg");
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -20,7 +20,7 @@
         }
 
         .blurred-bg {
-            background-image: url("img/captiveportal-lesvalloisBlur.jpg");
+            background-image: url("captiveportal-lesvalloisBlur.jpg");
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
@@ -28,7 +28,7 @@
         }
 
         .tinted {
-            background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url("img/captiveportal-lesvalloisBlur.jpg");
+            background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url("captiveportal-lesvalloisBlur.jpg");
         }
 
         .box {
@@ -115,7 +115,7 @@
 <body class="background-img">
 <div class="box blurred-bg tinted">
     <div class="content">
-        <img src="img/captiveportal-Logo-Helios.png" style="height: 175px; width: 190px;" alt="">
+        <img src="captiveportal-Logo-Helios.png" style="height: 175px; width: 190px;" alt="">
         <h1>Identifiant ou mot de passe incorrect.</h1>
         <form id="retryForm" method="post" action="$PORTAL_ACTION$">
             <input name="redirurl" type="hidden" value="$PORTAL_REDIRURL$">
@@ -124,8 +124,8 @@
             <a href="#" onclick="document.getElementById('retryForm').submit(); return false;">Cliquez ici</a>
         </p>
         <div class="language-selector">
-            <img src="img/captiveportal-francais.png" alt="French" onclick="changeLanguage('fr')">
-            <img src="img/captiveportal-anglais.png" alt="English" onclick="changeLanguage('en')">
+            <img src="captiveportal-francais.png" alt="French" onclick="changeLanguage('fr')">
+            <img src="captiveportal-anglais.png" alt="English" onclick="changeLanguage('en')">
         </div>
     </div>
 </div>
