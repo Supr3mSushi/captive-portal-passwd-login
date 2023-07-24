@@ -30,11 +30,16 @@
                 <form method="post" class="form" action="$PORTAL_ACTION$">
                     <input name="auth_user" type="text" placeholder="Identifiant" value="PCaptifUser" readonly style="display: none;">
                     <input name="auth_pass" type="password" placeholder="Mot de passe">
+<!--                    <div class="checkbox-container">-->
+<!--                        <ul class="list">-->
+<!--                            <input type="checkbox" class="checkTheBox">-->
+<!--                            <a href="#myModal" id="terms-Link">J'accepte les conditions d'utilisation</a>-->
+<!--                        </ul>-->
+<!--                    </div>-->
                     <div class="checkbox-container">
                         <ul class="list">
                             <input type="checkbox" class="checkTheBox">
-                            <span>J'accepte les <a id="terms-link-fr">conditions d'utilisation</a></span>
-                            <span><br>I agree with the <a id="terms-link-en">terms of use</a></span>
+                            <p id="terms-link" class="checkTheBox">J'accepte les conditions d'utilisation</p>
                         </ul>
                     </div>
                     <input name="redirurl" type="hidden" value="$PORTAL_REDIRURL$">
@@ -73,7 +78,7 @@
     form.addEventListener('submit', function (event) {
         var usernameInput = document.querySelector('input[name="auth_user"]');
         var passwordInput = document.querySelector('input[name="auth_pass"]');
-        var acceptCheckbox = document.querySelector('.checkTheBox'); // Correction ici
+        var acceptCheckbox = document.querySelector('.checkTheBox');
 
         if (!acceptCheckbox.checked) {
             event.preventDefault();
@@ -116,7 +121,8 @@
     var entreprises = {
         "entreprise": "img/captiveportal-lesvallois.jpg",
         "entreprise1": "img/captiveportal-lesvallois1.jpg",
-        //"entreprise2": "img/captiveportal-[nom-image].jpg",
+        "entreprise2": "img/captiveportal-lesvallois2.jpg",
+        //"entreprise3": "img/captiveportal-[nom-image].jpg",
     };
 
     var imagesEntreprises = Object.values(entreprises);
@@ -136,8 +142,8 @@
     // Appel initial pour définir l'image de fond
     changeBackgroundImage();
 
-    // Carrousel : changement automatique toutes les 3 secondes
-    setInterval(changeBackgroundImage, 3000);
+    // Carrousel : changement automatique toutes les 5 secondes
+    setInterval(changeBackgroundImage, 5000);
 
 
     // Changement de langue
@@ -151,7 +157,8 @@
         var submitButton = document.getElementById("btnSeConnecter");
         var buttonClose = document.querySelector(".close");
         var closeButton = document.getElementById("closeButton");
-        var formRect = document.querySelector(".form").getBoundingClientRect();
+        var conditionsText = document.getElementById("terms-Link");
+        var termsUse = document.getElementById("terms-link");
 
         if (lang === "fr") {
             title.innerText = "Bienvenue dans votre espace internet ";
@@ -166,6 +173,8 @@
             passwordInput.setAttribute("placeholder", "Mot de passe");
             submitButton.setAttribute("value", "Se Connecter");
             closeButton.innerText = "Fermer";
+            termsUse.innerText = "J'accepte les conditions d'utilisation";
+
         } else if (lang === "en") {
             title.innerText = "Welcome to your internet space ";
             modalTitle.innerText = "Terms of use";
@@ -179,48 +188,26 @@
             passwordInput.setAttribute("placeholder", "Password");
             submitButton.setAttribute("value", "Log In");
             closeButton.innerText = "Close";
+            termsUse.innerText = "I accept the terms of use";
         }
     }
 
+
     // Gestion du clic sur les liens "conditions d'utilisation" et "terms of use"
-    var termsLinkFR = document.getElementById("terms-link-fr");
-    var termsLinkEN = document.getElementById("terms-link-en");
-
-    termsLinkFR.addEventListener("click", function (event) {
-        event.preventDefault();
-        var modal = document.getElementById("myModal");
-        modal.style.display = "block";
-    });
-
-    termsLinkEN.addEventListener("click", function (event) {
+    var termsLink = document.getElementById("terms-link");
+    termsLink.addEventListener("click", function (event) {
         event.preventDefault();
         var modal = document.getElementById("myModal");
         modal.style.display = "block";
     });
 
     var closeButtons = document.getElementsByClassName("close");
-        for (var i = 0; i < closeButtons.length; i++) {
-            closeButtons[i].addEventListener("click", function () {
-                var modal = document.getElementById("myModal");
-                modal.style.display = "none";
-            });
-        }
-
-
-    // Fonction pour ajuster la position du bouton des conditions d'utilisation
-    function adjustButtonPosition() {
-        var button = document.getElementById('conditions-button');
-        var form = document.getElementById('login-form');
-        var formBottom = formRect.bottom;
-
-        button.style.top = formBottom + 'px';
+    for (var i = 0; i < closeButtons.length; i++) {
+        closeButtons[i].addEventListener("click", function () {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        });
     }
-
-    // Appel initial pour ajuster la position du bouton
-    adjustButtonPosition();
-
-    // Ajuster la position du bouton lorsque la fenêtre est redimensionnée
-    window.addEventListener('resize', adjustButtonPosition);
 </script>
 </body>
 </html>

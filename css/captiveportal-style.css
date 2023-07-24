@@ -126,7 +126,12 @@ input.checkTheBox {
     padding: 0
 }
 
-.checkbox-container a {
+.checkTheBox {
+    display: inline;
+    cursor: pointer;
+}
+
+.checkbox-container p {
     color: darkblue;
     font-weight: 600;
     cursor: pointer;
@@ -138,7 +143,7 @@ input.checkTheBox {
     display: none;
     width: 600px;
     height: 600px;
-    box-shadow: #354d62;
+    box-shadow: -30px -25px 50px -7px rgba(0,0,0,0.1);
 }
 
 #popup h3 {
@@ -150,7 +155,6 @@ input.checkTheBox {
 .modal {
     position: fixed;
     top: 0;
-    left: 0;
     left: 0;
     right: 0;
     bottom: 0;
@@ -178,159 +182,6 @@ input.checkTheBox {
     font-weight: bold;
     cursor: pointer;
 }
-
-
-/*@media (max-width: 767px) {*/
-/*    .header img {*/
-/*        width: 150px;*/
-/*        height: 150px;*/
-/*        margin-top: -20px;*/
-/*    }*/
-
-/*    .header h1 {*/
-/*        font-size: 25px;*/
-/*        margin: 15px 10px 50px 5px;*/
-/*    }*/
-
-/*    .form {*/
-/*        padding: 10px;*/
-/*        margin-top: 20px;*/
-/*    }*/
-
-/*    .form input {*/
-/*        font-size: 15px;*/
-/*    }*/
-
-/*    .button {*/
-/*        font-size: 15px;*/
-/*    }*/
-
-/*    .row {*/
-/*        width: 13rem;*/
-/*    }*/
-
-/*    .title p {*/
-/*        margin: 25px 10px 25px 20px;*/
-/*        font-size: 10px;*/
-/*    }*/
-
-/*    .card {*/
-/*        width: 100%;*/
-/*        max-width: 270px;*/
-/*        height: 580px;*/
-/*    }*/
-
-/*    .modal {*/
-/*        top: -60px;*/
-/*    }*/
-
-/*    .modal-content {*/
-/*        width: 90%;*/
-/*    }*/
-
-/*    .modal-content p {*/
-/*        font-size: 18px;*/
-/*    }*/
-
-/*    .language-selector {*/
-/*        position: absolute;*/
-/*        top: 300px;*/
-/*        right: 150px;*/
-/*    }*/
-
-/*    .language-selector img {*/
-/*        height: 30px;*/
-/*        width: 30px;*/
-/*        cursor: pointer;*/
-/*    }*/
-
-/*    .language-selector img:hover {*/
-/*        opacity: 0.8;*/
-/*    }*/
-/*}*/
-
-/*@media (min-width: 768px) and (max-width: 1023px) {*/
-/*    .card {*/
-/*        width: 100%;*/
-/*        max-width: 400px;*/
-/*        height: 690px;*/
-/*    }*/
-
-/*    .form {*/
-/*        padding: 60px;*/
-/*    }*/
-
-/*    .form input {*/
-/*        font-size: 16px;*/
-/*    }*/
-
-/*    .button {*/
-/*        font-size: 16px;*/
-/*    }*/
-/*}*/
-
-/*@media (min-width: 809px) and (max-width: 1079px) {*/
-/*    .card {*/
-/*        width: 100%;*/
-/*        max-width: 400px;*/
-/*        height: 680px;*/
-/*    }*/
-
-/*    .form {*/
-/*        padding: 60px;*/
-/*    }*/
-
-/*    .form input {*/
-/*        font-size: 16px;*/
-/*    }*/
-
-/*    .button {*/
-/*        font-size: 16px;*/
-/*    }*/
-/*}*/
-
-/*@media only screen*/
-/*and (device-width: 360px)*/
-/*and (device-height: 780px)*/
-/*and (-webkit-device-pixel-ratio: 3) {*/
-/*    .card {*/
-/*        width: 100%;*/
-/*        max-width: 270px;*/
-/*        height: 500px;*/
-/*    }*/
-
-/*    .modal {*/
-/*        top: -100px;*/
-/*    }*/
-
-/*    .modal-content {*/
-/*        width: 90%;*/
-/*    }*/
-
-/*    .modal-content p {*/
-/*        font-size: 20px;*/
-/*    }*/
-/*}*/
-
-/*@media (min-width: 1024px) {*/
-/*    .card {*/
-/*        width: 100%;*/
-/*        max-width: 400px;*/
-/*        height: 650px;*/
-/*    }*/
-
-/*    .form {*/
-/*        padding: 15px;*/
-/*    }*/
-
-/*    .form input {*/
-/*        font-size: 15px;*/
-/*    }*/
-
-/*    .button {*/
-/*        font-size: 18px;*/
-/*    }*/
-/*}*/
 
 @media screen and (max-width: 450px) {
     .card {
