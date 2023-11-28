@@ -7,7 +7,7 @@
 4. [Compatibility](#compatibility-)
 5. [Contributions](#contributions-)
 6. [Author](#author-)
-7. [License](#license)
+7. [License](#license-)
 
 ## Installation 
 1. **Clone this repository to your local machine :**
@@ -54,5 +54,5 @@ This project was initiated and developed by [Sushi](https://github.com/Supr3mSus
 If you have any questions, feedback, or would like to contribute, feel free to get in touch.
 
 
-## License
-This project is licensed under the MIT. See the `LICENSE` file for more details.
+## License 📄
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
