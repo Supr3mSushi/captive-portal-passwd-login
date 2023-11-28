@@ -21,7 +21,7 @@
                 <div class="header">
                     <img src="captiveportal-Logo-Helios.png" alt="logo">
                     <h1>Bienvenue dans votre espace internet</h1>
-                    <!-- Changement langue -->
+                    <!-- Switch Language -->
                     <div class="language-selector">
                         <img src="captiveportal-francais.png" alt="French" onclick="changeLanguage('fr')">
                         <img src="captiveportal-anglais.png" alt="English" onclick="changeLanguage('en')">
@@ -86,7 +86,7 @@
     });
 
 
-    // Fonction utilitaire pour afficher une alerte
+    // Utility function to display an alert
     function showAlert(message) {
         var existingAlert = document.querySelector(".alert");
         var alertElement;
@@ -111,12 +111,12 @@
         }, 3000);
     }
 
-    // Changement de l'image de fond avec carrousel automatique
+    // TODO : Change background image with automatic carousel
     var entreprises = {
         "entreprise": "captiveportal-fond1.jpg",
         "entreprise1": "captiveportal-fond2.jpg",
         "entreprise2": "captiveportal-fond2.jpg",
-        //"entreprise3": "img/captiveportal-fond4.jpg",
+        // "entreprise3": "img/captiveportal-fond4.jpg",
     };
 
     var imagesEntreprises = Object.values(entreprises);
@@ -133,14 +133,13 @@
         currentImageIndex = (currentImageIndex + 1) % imagesEntreprises.length;
     }
 
-    // Appel initial pour définir l'image de fond
     changeBackgroundImage();
 
-    // Carrousel : changement automatique toutes les 5 secondes
+    // Carousel : automatic change every 5 seconds
     setInterval(changeBackgroundImage, 5000);
 
 
-    // Changement de langue
+    // Switch Language
     function changeLanguage(lang) {
         var title = document.querySelector(".header h1");
         var modalTitle = document.querySelector(".modal-title");
@@ -187,7 +186,7 @@
     }
 
 
-    // Gestion du clic sur les liens "conditions d'utilisation" et "terms of use"
+    // Management of clicks on "conditions of use" and "terms of use" links
     var termsLink = document.getElementById("terms-link");
     termsLink.addEventListener("click", function (event) {
         event.preventDefault();
